@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>پنل ادمین — Nbat</title>
+  <link rel="stylesheet" href="admin.css"/>
+</head>
+<body>
+  <header class="container">
+    <h1>پنل ادمین — Nbat</h1>
+    <nav>
+      <a href="../index.html" class="link">بازگشت به صفحه اصلی</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="grid two-col">
+      <div class="card">
+        <h2>تقویم و مدیریت زمان‌ها</h2>
+        <div class="calendar-container">
+          <div class="calendar-header">
+            <button id="prevMonth" class="btn secondary">‹</button>
+            <h3 id="currentMonth">فروردین ۱۴۰۴</h3>
+            <button id="nextMonth" class="btn secondary">›</button>
+          </div>
+          <div class="calendar-grid">
+            <div class="calendar-weekdays">
+              <div>ش</div><div>ی</div><div>د</div><div>س</div><div>چ</div><div>پ</div><div>ج</div>
+            </div>
+            <div id="calendarDays" class="calendar-days"></div>
+          </div>
+        </div>
+        
+        <div class="time-selection">
+          <h3>انتخاب ساعت برای تاریخ: <span id="selectedDate">-</span></h3>
+          <div class="time-grid" id="timeGrid">
+            <div class="time-slot" data-time="09:00">09:00</div>
+            <div class="time-slot" data-time="09:30">09:30</div>
+            <div class="time-slot" data-time="10:00">10:00</div>
+            <div class="time-slot" data-time="10:30">10:30</div>
+            <div class="time-slot" data-time="11:00">11:00</div>
+            <div class="time-slot" data-time="11:30">11:30</div>
+            <div class="time-slot" data-time="12:00">12:00</div>
+            <div class="time-slot" data-time="12:30">12:30</div>
+            <div class="time-slot" data-time="13:00">13:00</div>
+            <div class="time-slot" data-time="13:30">13:30</div>
+            <div class="time-slot" data-time="14:00">14:00</div>
+            <div class="time-slot" data-time="14:30">14:30</div>
+            <div class="time-slot" data-time="15:00">15:00</div>
+            <div class="time-slot" data-time="15:30">15:30</div>
+            <div class="time-slot" data-time="16:00">16:00</div>
+            <div class="time-slot" data-time="16:30">16:30</div>
+            <div class="time-slot" data-time="17:00">17:00</div>
+            <div class="time-slot" data-time="17:30">17:30</div>
+            <div class="time-slot" data-time="18:00">18:00</div>
+            <div class="time-slot" data-time="18:30">18:30</div>
+            <div class="time-slot" data-time="19:00">19:00</div>
+            <div class="time-slot" data-time="19:30">19:30</div>
+            <div class="time-slot" data-time="20:00">20:00</div>
+            <div class="time-slot" data-time="20:30">20:30</div>
+          </div>
+          <button id="addSelectedTimes" class="btn primary" disabled>افزودن ساعت‌های انتخاب شده</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>رزروها</h2>
+        <div id="bookingList" class="list empty-state">رزروی ثبت نشده.</div>
+        <div class="actions">
+          <button type="button" class="btn secondary" id="exportBtn">خروجی JSON</button>
+          <a id="downloadLink" class="link" style="display:none">دانلود فایل</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid three-col">
+      <div class="card">
+        <h2>پست‌ها</h2>
+        <form id="postForm" class="form-col">
+          <input type="text" id="postTitle" placeholder="عنوان" required/>
+          <textarea id="postBody" rows="3" placeholder="متن پست"></textarea>
+          <div class="file-upload">
+            <label for="postImage">عکس پست:</label>
+            <input type="file" id="postImage" accept="image/*" />
+          </div>
+          <div class="color-picker">
+            <label>انتخاب رنگ:</label>
+            <div class="container-items">
+              <button type="button" class="item-color" style="--color: #fecaca" aria-color="صورتی نرم" data-color="#fecaca"></button>
+              <button type="button" class="item-color" style="--color: #fbbf24" aria-color="زرد نرم" data-color="#fbbf24"></button>
+              <button type="button" class="item-color" style="--color: #a7f3d0" aria-color="سبز نرم" data-color="#a7f3d0"></button>
+              <button type="button" class="item-color" style="--color: #bfdbfe" aria-color="آبی نرم" data-color="#bfdbfe"></button>
+              <button type="button" class="item-color" style="--color: #ddd6fe" aria-color="بنفش نرم" data-color="#ddd6fe"></button>
+              <button type="button" class="item-color" style="--color: #fecdd3" aria-color="صورتی روشن" data-color="#fecdd3"></button>
+              <button type="button" class="item-color" style="--color: #fed7aa" aria-color="نارنجی نرم" data-color="#fed7aa"></button>
+              <button type="button" class="item-color" style="--color: #d1fae5" aria-color="سبز روشن" data-color="#d1fae5"></button>
+              <button type="button" class="item-color" style="--color: #dbeafe" aria-color="آبی روشن" data-color="#dbeafe"></button>
+              <button type="button" class="item-color" style="--color: #e9d5ff" aria-color="بنفش روشن" data-color="#e9d5ff"></button>
+            </div>
+            <input type="hidden" id="postColor" value="#fecaca" />
+          </div>
+          <button class="btn primary" type="submit">افزودن پست</button>
+        </form>
+        <div id="postList" class="list empty-state">پستی ثبت نشده.</div>
+      </div>
+
+      <div class="card">
+        <h2>تخفیف‌ها</h2>
+        <form id="discountForm" class="form-col">
+          <input type="text" id="discountTitle" placeholder="عنوان" required/>
+          <input type="number" id="discountPercent" placeholder="درصد (مثلاً 20)" min="1" max="100"/>
+          <textarea id="discountDesc" rows="2" placeholder="توضیحات"></textarea>
+          <div class="file-upload">
+            <label for="discountImage">عکس تخفیف:</label>
+            <input type="file" id="discountImage" accept="image/*" />
+          </div>
+          <div class="color-picker">
+            <label>انتخاب رنگ:</label>
+            <div class="container-items">
+              <button type="button" class="item-color" style="--color: #fecaca" aria-color="صورتی نرم" data-color="#fecaca"></button>
+              <button type="button" class="item-color" style="--color: #fbbf24" aria-color="زرد نرم" data-color="#fbbf24"></button>
+              <button type="button" class="item-color" style="--color: #a7f3d0" aria-color="سبز نرم" data-color="#a7f3d0"></button>
+              <button type="button" class="item-color" style="--color: #bfdbfe" aria-color="آبی نرم" data-color="#bfdbfe"></button>
+              <button type="button" class="item-color" style="--color: #ddd6fe" aria-color="بنفش نرم" data-color="#ddd6fe"></button>
+              <button type="button" class="item-color" style="--color: #fecdd3" aria-color="صورتی روشن" data-color="#fecdd3"></button>
+              <button type="button" class="item-color" style="--color: #fed7aa" aria-color="نارنجی نرم" data-color="#fed7aa"></button>
+              <button type="button" class="item-color" style="--color: #d1fae5" aria-color="سبز روشن" data-color="#d1fae5"></button>
+              <button type="button" class="item-color" style="--color: #dbeafe" aria-color="آبی روشن" data-color="#dbeafe"></button>
+              <button type="button" class="item-color" style="--color: #e9d5ff" aria-color="بنفش روشن" data-color="#e9d5ff"></button>
+            </div>
+            <input type="hidden" id="discountColor" value="#fecaca" />
+          </div>
+          <button class="btn primary" type="submit">افزودن تخفیف</button>
+        </form>
+        <div id="discountList" class="list empty-state">تخفیفی ثبت نشده.</div>
+      </div>
+
+      <div class="card">
+        <h2>آفرها</h2>
+        <form id="offerForm" class="form-col">
+          <input type="text" id="offerTitle" placeholder="عنوان" required/>
+          <textarea id="offerDesc" rows="2" placeholder="توضیحات"></textarea>
+          <div class="file-upload">
+            <label for="offerImage">عکس آفر:</label>
+            <input type="file" id="offerImage" accept="image/*" />
+          </div>
+          <div class="color-picker">
+            <label>انتخاب رنگ:</label>
+            <div class="container-items">
+              <button type="button" class="item-color" style="--color: #fecaca" aria-color="صورتی نرم" data-color="#fecaca"></button>
+              <button type="button" class="item-color" style="--color: #fbbf24" aria-color="زرد نرم" data-color="#fbbf24"></button>
+              <button type="button" class="item-color" style="--color: #a7f3d0" aria-color="سبز نرم" data-color="#a7f3d0"></button>
+              <button type="button" class="item-color" style="--color: #bfdbfe" aria-color="آبی نرم" data-color="#bfdbfe"></button>
+              <button type="button" class="item-color" style="--color: #ddd6fe" aria-color="بنفش نرم" data-color="#ddd6fe"></button>
+              <button type="button" class="item-color" style="--color: #fecdd3" aria-color="صورتی روشن" data-color="#fecdd3"></button>
+              <button type="button" class="item-color" style="--color: #fed7aa" aria-color="نارنجی نرم" data-color="#fed7aa"></button>
+              <button type="button" class="item-color" style="--color: #d1fae5" aria-color="سبز روشن" data-color="#d1fae5"></button>
+              <button type="button" class="item-color" style="--color: #dbeafe" aria-color="آبی روشن" data-color="#dbeafe"></button>
+              <button type="button" class="item-color" style="--color: #e9d5ff" aria-color="بنفش روشن" data-color="#e9d5ff"></button>
+            </div>
+            <input type="hidden" id="offerColor" value="#fecaca" />
+          </div>
+          <button class="btn primary" type="submit">افزودن آفر</button>
+        </form>
+        <div id="offerList" class="list empty-state">آفری ثبت نشده.</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container footer">
+    <small>© 2025 Nbat — پنل ادمین</small>
+  </footer>
+
+  <script src="../config.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
